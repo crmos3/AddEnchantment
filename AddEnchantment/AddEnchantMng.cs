@@ -26,18 +26,18 @@ namespace AddEnchantment
             List<EnchantSetting> adding = new List<EnchantSetting>();
             foreach (var fileName in files)
             {
-                //try
-                //{
+                try
+                {
                 var json = ReadFile(fileName);
                 var parameter = Parse(json);
                 var enchant = Build(parameter);
                 adding.Add(enchant);
                 CallBack?.Invoke(parameter, enchant);
-                //}
-                //catch
-                //{
-                UnityEngine.Debug.Log("Error occuerd in " + fileName);
-                //}
+                }
+                catch
+                {
+                    UnityEngine.Debug.Log("Error occuerd in " + fileName);
+                }
             }
             EnchantHelper.Inst.AddEnchant(adding.ToArray());
         }

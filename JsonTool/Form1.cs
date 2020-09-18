@@ -37,7 +37,7 @@ namespace JsonTool
 
         static Dictionary<string, int> EnemyName = new Dictionary<string, int>()
         {
-            {"ゴリラ",4},
+            { "ゴリラ",4},
             {"クマ",9},
             {"爆弾タル",10},
             {"ゴブリンウォーリア",11},
@@ -69,7 +69,52 @@ namespace JsonTool
             {"リザードソード",41},
             {"村人アレクサンドリア",100},
             {"盗賊ケビン",101},
-            {"受付係ファン",102}
+            {"受付係ファン",102},
+            {"商人スミス",103},
+            {"鍛冶屋ファーガス",104},
+            {"村人子供男1",105},
+            {"村人子供女1",106},
+            {"村人男1",107},
+            {"村人男2",108},
+            {"村人男3",109},
+            {"村人男4",110},
+            {"村人男5",111},
+            {"村人男6",112},
+            {"村人男7",113},
+            {"村人男8",114},
+            {"村人男9",115},
+            {"村人男10",116},
+            {"アヌビス",121},
+            {"村人女1",122},
+            {"村人女2",123},
+            {"村人女3",124},
+            {"村人女4",125},
+            {"チュートリアル女1",126},
+            {"チュートリアル女2",127},
+            {"チュートリアル女3",128},
+            {"チュートリアル老人(男)4",129},
+            {"チュートリアル老人(男)5",130},
+            {"チュートリアル老人(男)6",131},
+            {"チュートリアル老人(男)7",132},
+            {"チュートリアル老人(男)8",133},
+            {"チュートリアル老人(男)9",134},
+            {"チュートリアル老人(男)10",135},
+            {"戦車",150},
+            {"気球",151},
+            {"ヘリ",152},
+            {"ホバーボード",153},
+            {"バイク",154},
+            {"バギー",155},
+            {"フレームウォーカー",156},
+            {"複葉機",157},
+            {"スケルトン二等兵",167},
+            {"スケルトン一等兵",168},
+            {"スケルトン兵長",169},
+            {"ストーンゴーレム",170},
+            {"ゴブリンハンター",175},
+            {"鉄球",196},
+            {"的",197},
+            {"固定砲台（炎）",198},
         };
 
         private Dictionary<string, float> EnemyList = new Dictionary<string, float>();
@@ -108,7 +153,7 @@ namespace JsonTool
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            
+
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,6 +177,7 @@ namespace JsonTool
                 TreassureProbs2.Value = (decimal)enchant.TreassureDrop[2];
                 TreassureProbs3.Value = (decimal)enchant.TreassureDrop[3];
                 TreassureProbs4.Value = (decimal)enchant.TreassureDrop[4];
+                EnemyList.Clear();
                 for (int i = 0; i < enchant.SpecifiedEnemyDropID.Length; i++)
                 {
                     var id = enchant.SpecifiedEnemyDropID[i];
@@ -139,7 +185,8 @@ namespace JsonTool
                     EnemyList[name] = enchant.SpecifiedEnemyDropProb[i];
                 }
                 UpdateEnemyProbsList();
-                for(int i = 0; i < enchant.EffectName.Length; i++)
+                EffectList.Clear();
+                for (int i = 0; i < enchant.EffectName.Length; i++)
                 {
                     EffectList[enchant.EffectName[i]] = enchant.EffectValue[i];
                 }
@@ -174,7 +221,8 @@ namespace JsonTool
                 enchant.SpecifiedEnemyDropID = new int[EnemyList.Count];
                 enchant.SpecifiedEnemyDropProb = new float[EnemyList.Count];
                 int i = 0;
-                foreach(var pair in EnemyList) {
+                foreach (var pair in EnemyList)
+                {
                     enchant.SpecifiedEnemyDropID[i] = EnemyName[pair.Key];
                     enchant.SpecifiedEnemyDropProb[i] = pair.Value;
                     i++;
@@ -182,7 +230,7 @@ namespace JsonTool
                 enchant.EffectName = new string[EffectList.Count];
                 enchant.EffectValue = new float[EffectList.Count];
                 i = 0;
-                foreach(var pair in EffectList)
+                foreach (var pair in EffectList)
                 {
                     enchant.EffectName[i] = pair.Key;
                     enchant.EffectValue[i] = pair.Value;
@@ -273,7 +321,7 @@ namespace JsonTool
 
         private int GetIndex(ComboBox box, string str)
         {
-            for(int i = 0; i < box.Items.Count; i++)
+            for (int i = 0; i < box.Items.Count; i++)
             {
                 var item = box.Items[i];
                 if (item.Equals(str))
