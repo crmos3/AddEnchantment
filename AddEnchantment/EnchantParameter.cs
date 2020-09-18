@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AddEnchantment
 {
-    class EnchantParameter
+    public class EnchantParameter
     {
+        public int ID { get; set; }
         public string JapaneseName { get; set; }
         public string EnglishName { get; set; }
         public string ChinseSimplifiedName { get; set; }
@@ -22,5 +23,6 @@ namespace AddEnchantment
         public float[] SpecifiedEnemyDropProb { get; set; }
         public string[] EffectName { get; set; }
         public float[] EffectValue { get; set; }
+        public string ExtraValue { get; set; }
     }
 }
